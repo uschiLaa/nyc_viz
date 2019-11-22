@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Visualising physics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ursula Laa" />
+    <link href="libs/remark-css/kunoichi.css" rel="stylesheet" />
+    <link href="libs/remark-css/ninjutsu.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/plotly-binding/plotly.js"></script>
+    <script src="libs/typedarray/typedarray.min.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="libs/plotly-main/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+
+layout: false
+class: split-33 with-thick-border border-black
+
+
+&lt;style type="text/css"&gt;
+/* custom.css */
+:root{
+  --main-color1: #2f4c7a;
+  --main-color2: #bcbddc;
+  --main-color3: #efedf5;
+  --main-color4: #9DDAE5;
+  --text-color3: black;
+  --text-color4: black;
+  --code-inline-color: #4e5054;
+  --link-color: #006CAB;
+  --logo: url(http://www.fragiletoagile.com.au/wp-content/uploads/2018/02/monash-university-logo-transparent.png);
+}
+.large { font-size: 150% }
+.largeish { font-size: 120% }
+.summarystyle { font-size: 150%;
+  line-height:150%;}
+&lt;/style&gt;
+
+
+
+
+.column[.bottom_abs.content[
+&lt;img src="plots/monash-university-logo-transparent.png" width="70%"&gt;
+]]
+
+.column.bg-main1[.content.vmiddle[.center[
+
+
+# High-dimensional data visualisation with tours
+
+&lt;br&gt;
+&lt;br&gt;
+
+# Ursula Laa
+
+
+### School of Physics and Astronomy
+### &amp;
+### Department of Econometrics and Business Statistics
+
+]]]
+---
+layout: false
+class: split-66
+
+.column[.content[
+
+
+# A bit about me
+
+&lt;br&gt;
+
+&lt;img src="figure/map1-1.png" style="display: block; margin: auto;" /&gt;
+]]
+
+.column[.content.vmiddle[.center[
+&lt;img src="plots/IMG_5105.jpg" width="55%"&gt;
+
+&lt;br&gt;
+
+&lt;img src="plots/T1tttt_ICHEP2014_All.pdf" width="75%"&gt;
+]]]
+
+---
+layout: false
+class: split-66
+
+.column[.content[
+
+
+# A bit about me
+
+&lt;br&gt;
+
+&lt;img src="figure/map2-1.png" style="display: block; margin: auto;" /&gt;
+]]
+
+.column[.content.vmiddle[.center[
+&lt;img src="plots/l_snu.png" width="75%"&gt;
+
+&lt;br&gt;
+
+&lt;img src="plots/Rmax_allowed_glu_N1_BinoLSP.png" width="95%"&gt;
+]]]
+
+---
+layout: false
+class: split-66
+
+.column[.content[
+
+
+# A bit about me
+
+&lt;br&gt;
+
+&lt;img src="figure/map3-1.png" style="display: block; margin: auto;" /&gt;
+]]
+
+.column[.content.vmiddle[.center[
+&lt;img src="plots/tourr.png" width="40%"&gt;
+&lt;img src="plots/plotly.png" width="40%"&gt;
+
+&lt;br&gt;
+
+
+&lt;img src="plots/flyingBirds.gif" width="60%" height="60%" style="display: block; margin: auto;" /&gt;
+]]]
+
+---
+class: middle center bg-main1
+
+# Projections
+
+---
+
+## Projections are everywhere
+
+&lt;br&gt;
+
+--
+
+.large[The most common projections are from our **3 dimensional** world onto a **2 dimensional** plane]
+
+--
+
+&lt;br&gt;
+
+.large[Examples:
+* Photographs
+* 3D objects on 2D screens
+* Shadows
+]
+
+--
+
+&lt;br&gt;
+
+.large[We can fully understand the 3D object if we look at it from different angles, for example when we rotate the viewing angle of a 3D plot!]
+
+---
+# We can understand the 3D shape from 2D  projections
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+<video width="450" loop autoplay>
+        <source src="plots/media.io_cube-3.mp4" type="video/mp4">
+      </video>
+]
+
+&lt;br&gt;
+
+Example video taken from [here](http://schloerke.com/geozoo/)
+---
+class: middle center
+
+# Looking at 3D plots
+
+&lt;br&gt;
+
+<div id="htmlwidget-70f22dfffd048e9459b0" style="width:60%;height:60%;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-70f22dfffd048e9459b0">{"x":{"visdat":{"f5a4278e9023":["function () ","plotlyVisDat"]},"cur_data":"f5a4278e9023","attrs":{"f5a4278e9023":{"x":{},"y":{},"z":{},"color":{},"colors":["#BF382A","#0C4B8E"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Weight"},"yaxis":{"title":"Gross horsepower"},"zaxis":{"title":"1/4 mile time"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.465,3.52,3.435,3.84,3.845],"y":[110,175,105,245,62,95,123,123,180,180,180,205,215,230,97,150,150,245,175],"z":[19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,20.01,16.87,17.3,15.41,17.05],"type":"scatter3d","mode":"markers","name":"Automatic","marker":{"color":"rgba(191,56,42,1)","line":{"color":"rgba(191,56,42,1)"}},"textfont":{"color":"rgba(191,56,42,1)"},"error_y":{"color":"rgba(191,56,42,1)"},"error_x":{"color":"rgba(191,56,42,1)"},"line":{"color":"rgba(191,56,42,1)"},"frame":null},{"x":[2.62,2.875,2.32,2.2,1.615,1.835,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[110,110,93,66,52,65,66,91,113,264,175,335,109],"z":[16.46,17.02,18.61,19.47,18.52,19.9,18.9,16.7,16.9,14.5,15.5,14.6,18.6],"type":"scatter3d","mode":"markers","name":"Manual","marker":{"color":"rgba(12,75,142,1)","line":{"color":"rgba(12,75,142,1)"}},"textfont":{"color":"rgba(12,75,142,1)"},"error_y":{"color":"rgba(12,75,142,1)"},"error_x":{"color":"rgba(12,75,142,1)"},"line":{"color":"rgba(12,75,142,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+&lt;br&gt;
+
+.largeish[This is an example from [plotly](https://plot.ly/r/3d-scatter-plots/)]
+
+---
+class: middle center bg-main1
+
+# Beyond 3 dimensions
+---
+
+# Going to 4 dimensions
+
+&lt;br&gt;
+
+--
+
+.center[&lt;img src="plots/Dimension_levels.svg" width="55%"&gt; &lt;br&gt; from [here](https://en.wikipedia.org/wiki/File:Dimension_levels.svg)]
+
+&lt;br&gt;
+
+--
+
+.large[We can imagine a 4D cube by extending a 3D cube into a 4th dimension. That is also how we think about high dimensions in data, each dimension adds an orthogonal axis.]
+
+--
+
+.large[And we can look at different 2D views with a grand tour. Each plane corresponds to a **projection** from the original space down to two dimensions, and we project each data point onto the same plane.]
+
+---
+
+# Grand tour showing a 4D cube
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+<video width="450" loop autoplay>
+        <source src="plots/media.io_cube-4.mp4" type="video/mp4">
+      </video>
+]
+
+&lt;br&gt;
+
+Example videos taken from [here](http://schloerke.com/geozoo/)
+
+---
+
+# Grand tour showing a 5D cube
+
+&lt;br&gt;
+&lt;br&gt;
+
+.center[
+<video width="450" loop autoplay>
+        <source src="plots/cube-5.mov" type="video/mp4">
+      </video>
+]
+
+&lt;br&gt;
+
+.large[This works for any number of dimensions and we can learn about the shape in the high dimensional space.]
+
+---
+
+# Shapes in 5D
+
+.largeish[Comparing samples on the surface of a sphere vs the faces of a cube in 5D. We can understand differences between the shapes through the interpolated 2D projections!]
+
+
+
+--
+
+.center[
+&lt;iframe src="s5.html" width="800" height="500" scrolling="yes" seamless="seamless" frameBorder="0"&gt; &lt;/iframe&gt;
+]
+
+---
+class: middle center bg-main1
+
+# Grand tour data displays
+
+---
+
+# 2D scatter plot display
+
+.large[
+* All data points are projected onto 2D plane
+* Draw scatter plot of the data points
+* Represent the current projection as "axes"
+]
+
+.center[
+&lt;img src="tour2d.gif" width="40%" height="40%" style="display: block; margin: auto;" /&gt;
+]
+---
+class: split-two
+
+.column[.content[
+# Many other dispay types are possible
+
+.large[Example displays for 1 or 3 dimensional projections]
+
+&lt;img src="tour1d.gif" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
+]]
+
+.column.column[.content.vmiddle[
+&lt;img src="tour3d.gif" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
+]]
+
+---
+class: middle center bg-main1
+
+# Using tours in (physics) research
+
+---
+class: split-two
+
+.column[.content[
+# Exploring structure in high dimensions
+
+&lt;br&gt;
+
+.large[Tour visualisations are a great way to explore structure beyond 2 or 3 dimensions. Typical applications include:
+
+* Identifying and comparing clusters
+* Find multivariate outliers
+* Identifying complex relations between parameters (beyond simple linear correlations)
+]
+
+&lt;br&gt;
+
+.largeish[Simple example: flea dataset, comparing 3 species on 6 measures]
+
+]]
+
+.column[.content.vmiddle[
+&lt;img src="plots/flea.gif" width="90%" height="90%" style="display: block; margin: auto;" /&gt;
+]]
+
+---
+# A less simple example
+
+.largeish[Comparing particle physics measurements based on what they tell us about the structure of the proton, in a 6 dimensional parameter space. We can group them into three different types of experiments, but the visualisation reveals much more structure than that!]
+
+&lt;br&gt;
+
+--
+&lt;img src="plots/allcenter.gif" width="40%" height="40%" style="display: block; margin: auto;" /&gt;
+
+---
+layout: false
+class: split-33 with-border border-black
+
+.column[.content.vmiddle[
+# Going into details
+
+&lt;br&gt;
+
+.large[Focusing on one group, we can for example compare in detail the distributions obtained for different experiments, visually identify outlying points]
+]]
+
+.column[.content.vmiddle[.center[
+&lt;img src="plots/jetCluster.gif" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
+]]]
+
+---
+
+class: bg-main1
+# Summary
+
+.large[&amp;#9655; Projections and the grand tour allow to examine high dimensional data distributions in detail]
+
+
+--
+
+
+.large[&amp;#9655; We can learn about shapes in high dimensional space, compare groups or identify outlying points]
+
+
+--
+
+
+.large[&amp;#9655; This can provide valuable insights and intuition for researchers]
+
+&lt;br&gt;
+
+--
+
+#Thanks!
+
+.large[These slides are made with R markdown using xaringan and the Kunoichi theme.]
+
+&lt;br&gt;
+
+--
+
+# References
+
+.large[See https://uschilaa.github.io for references and additional resources!]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/slides.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"ratio": "16:9",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
